@@ -1,4 +1,4 @@
-package com.example.pokedex;
+package com.internettechnologie.pokedex;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
