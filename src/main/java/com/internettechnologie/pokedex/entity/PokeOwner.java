@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "OWNER")
-public class Owner {
+@Table(name = "POKE_OWNER")
+public class PokeOwner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

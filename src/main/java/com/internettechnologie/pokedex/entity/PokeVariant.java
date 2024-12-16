@@ -27,8 +27,8 @@ public class PokeVariant {
     private Boolean shiny;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "POKE_VARIANT", referencedColumnName = "ID")
-    private Owner owner;
+    @JoinColumn(name = "POKE_OWNER", referencedColumnName = "ID")
+    private PokeOwner pokeOwner;
 
     public Long getId() {
         return id;
@@ -70,11 +70,11 @@ public class PokeVariant {
         this.shiny = shiny;
     }
 
-    public Owner getOwner() {
-        return owner;
+    public PokeOwner getPokeOwner() {
+        return pokeOwner;
     }
 
-    public void setOwner(Owner owner) {
-        this.owner = owner;
+    public void setPokeOwner(PokeOwner pokeOwner) {
+        this.pokeOwner = pokeOwner;
     }
 }
