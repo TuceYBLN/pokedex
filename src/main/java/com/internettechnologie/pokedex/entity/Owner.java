@@ -14,7 +14,7 @@ public class Owner {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "VARIANT_ID", nullable = false)
+    @JoinColumn(name = "VARIANT_ID")
     private PokeVariant pokeVariant;
 
     public Long getId() {

@@ -13,9 +13,12 @@ public class PokeVariant {
     @Column(name = "ID", nullable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "POKEMON_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "POKEMON_ID")
     private Pokemon pokemon;
+
+    @Column(name = "DEX", nullable = false)
+    private Integer dex;
 
     @Column(name = "VARIANT", length = 100)
     private String variant;
@@ -43,6 +46,14 @@ public class PokeVariant {
         this.pokemon = pokemon;
     }
 
+    public Integer getDex() {
+        return dex;
+    }
+
+    public void setDex(Integer dex) {
+        this.dex = dex;
+    }
+
     public String getVariant() {
         return variant;
     }
@@ -57,5 +68,13 @@ public class PokeVariant {
 
     public void setShiny(Boolean shiny) {
         this.shiny = shiny;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 }

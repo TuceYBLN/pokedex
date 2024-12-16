@@ -3,6 +3,7 @@ package com.internettechnologie.pokedex.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -16,18 +17,17 @@ public class Pokemon {
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "POKEMON", referencedColumnName = "ID")
+    @JoinColumn(name = "POKENAME_ID", referencedColumnName = "ID")
     private PokeName pokeName;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "POKEMON", referencedColumnName = "ID")
-    private List<PokeVariant> pokeVariant;
+    @OneToMany(mappedBy = "pokemon", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PokeVariant> pokeVariant = new ArrayList<>();
 
     @Column(name = "DEX", nullable = false)
     private Integer dex;
 
     @Column(name = "TYPE")
-    private String type;
+    private List<String>  types;
 
     @Column(name = "FAMILY", length=50)
     private String family;
@@ -51,12 +51,12 @@ public class Pokemon {
         this.dex = dex;
     }
 
-    public String getType() {
-        return type;
+    public List<String> getTypes() {
+        return types;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypes(List<String> types) {
+        this.types = types;
     }
 
     public String getFamily() {

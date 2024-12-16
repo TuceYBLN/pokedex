@@ -14,7 +14,7 @@ public class PokeName {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "POKEMON_ID", nullable = false)
+    @JoinColumn(name = "POKEMON_ID", referencedColumnName = "ID")
     private Pokemon pokemon;
 
     @Column(name = "NAME_DE", length = 100)
@@ -97,5 +97,8 @@ public class PokeName {
 
     public void setPokemon(Pokemon pokemon) {
         this.pokemon = pokemon;
+        if (pokemon != null) {
+            pokemon.setPokeName(this);
+        }
     }
 }
