@@ -83,11 +83,7 @@ public class PokeDataFromJsonToDBService {
 
             if (pokemon != null) {
                 variant.setPokemon(pokemon);
-                if (splittedPokeInfo[splittedPokeInfo.length - 1].equals("shiny")) {
-                    variant.setShiny(true);
-                } else {
-                    variant.setShiny(false);
-                }
+                variant.setShiny(splittedPokeInfo[splittedPokeInfo.length - 1].equals("shiny"));
 
                 if ((splittedPokeInfo.length == 4)) {
                     variant.setVariant(splittedPokeInfo[3]);
