@@ -1,0 +1,16 @@
+[
+  {
+    "dex": 2,
+    "name": {
+      "de": "Bisaknosp",
+      "en": "Ivysaur",
+      "fr": "Herbizarre",
+      "ja": "フシギソウ",
+      "kr": "이상해풀",
+      "zh": "妙蛙草"
+    },
+    "types":[ "grass", "poison" ],
+    "shiny_released": true,
+    "family": "Bulbasaur"
+  }
+]

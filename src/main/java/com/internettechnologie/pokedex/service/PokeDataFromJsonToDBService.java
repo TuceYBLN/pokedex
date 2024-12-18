@@ -22,7 +22,7 @@ import java.util.List;
 public class PokeDataFromJsonToDBService {
 
     @Autowired
-    private PokemonRepository pokemonRepository;
+    protected PokemonRepository pokemonRepository;
 
     @Autowired
     private PokeNameRepository pokeNameRepository;
