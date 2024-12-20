@@ -36,7 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-.dropdownMenu div {
-  min-width: 0rem;
-}
