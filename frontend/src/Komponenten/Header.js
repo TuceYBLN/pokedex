@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Header() {
         return (
+          <div className="custom-navbar">
             <Navbar expand="lg" className="bg-body-tertiary">
               <Container>
                 <Navbar.Brand href="#home">Pokédex</Navbar.Brand>
@@ -23,6 +24,7 @@ function Header() {
                 </Navbar.Collapse>
               </Container>
             </Navbar>
+            </div>
     );
 }
 
