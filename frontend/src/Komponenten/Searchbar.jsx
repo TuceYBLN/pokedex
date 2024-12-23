@@ -1,15 +1,15 @@
 import Form from 'react-bootstrap/Form';
 
-function Suchleiste() {
+function Searchbar() {
   return (
     <div className="content-padding">
     <Form>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Control type="text" placeholder="Suche" />
+        <Form.Control type="text" placeholder="Search" />
       </Form.Group>
     </Form>
     </div>
   );
 }
 
-export default Suchleiste;
+export default Searchbar;
