@@ -26,8 +26,10 @@ public class Pokemon {
     @Column(name = "DEX", nullable = false)
     private Integer dex;
 
-    @Column(name = "TYPE")
-    private List<String>  types;
+    //Quell: https://www.baeldung.com/java-jpa-persist-string-list
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
+    @Column(name = "TYPES")
+    private List<String>  types = new ArrayList<>();;
 
     @Column(name = "FAMILY", length=50)
     private String family;

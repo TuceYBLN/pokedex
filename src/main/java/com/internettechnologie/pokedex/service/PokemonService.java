@@ -13,7 +13,7 @@ public class PokemonService {
     @Autowired
     private PokemonRepository pokemonRepository;
 
-    public List<Pokemon> findAll(){
+    public List<Pokemon> findAllPokemons(){
         return pokemonRepository.findAll();
     }
 }

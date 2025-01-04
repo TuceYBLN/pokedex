@@ -17,7 +17,10 @@ import org.springframework.context.annotation.Bean;
 import java.io.*;
 import java.util.List;
 
-@SpringBootApplication
+/**
+ * Da bereits ausgefuehrt, um Daten in die DB zu bekommen, wird diese Klasse ausgeblendet beim Ausfuehren von der Applikation.
+ */
+//@SpringBootApplication
 public class JsonDBApplication {
 
     @Autowired
