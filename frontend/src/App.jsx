@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./Komponenten/Header";
 import Searchbar from "./Komponenten/Searchbar";
 import PokeCard from "./Komponenten/PokeCard";
-import imageFilenames from "./imageList.js";
 import axios from "axios";
 
 function App() {
@@ -35,31 +34,21 @@ function App() {
         }}
         className="content-padding"
       >
-        {imageFilenames.map((filename, index) => {
-          const dexID = filename.match(/pokemon_icon_(\d{3})/);
-          const type = filename.match(/pokemon_icon_\d{3}_(\d{2}(?:_\d{2})?)/);
-          const shiny = filename.match(
-            /pokemon_icon_\d{3}_(\d{2}(?:_\d{2})?)_(shiny)/
-          );
+        {message.map((pokevariant, index) => {
           return (
             <PokeCard
               key={index}
-              image={filename}
-              id={dexID ? dexID[1] : ""}
-              type={type ? type[1] : ""}
-              shiny={shiny ? shiny[1] : ""}
+              image={pokevariant.image}
+              id={pokevariant.dex}
+              variant={pokevariant.variant}
+              shiny={pokevariant.shiny}
+              region={pokevariant.region}
+              family={pokevariant.family}
+              name={pokevariant.nameDe}
             />
           );
         })}
       </div>
-      <ul>
-      <h1>TEST</h1>
-        {message.map((item, index) => (
-          <li key={index}>
-            ID: {item.id}, Types: {item.image}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
