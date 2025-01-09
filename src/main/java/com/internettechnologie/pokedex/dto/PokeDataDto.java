@@ -4,6 +4,7 @@ import java.util.List;
 
 public class PokeDataDto {
 
+    private Long id;
     private Integer dex;
     private String nameDe;
     private String nameEn;
@@ -13,9 +14,13 @@ public class PokeDataDto {
     private String nameZh;
     private String family;
     private List<String> types;
+    private Boolean shiny;
+    private String variant;
+    private String image;
     private String region;
 
-    public PokeDataDto(Integer dex, String nameDe, String nameEn, String nameFr, String nameJa, String nameKr, String nameZh, String family, List<String> types, String region) {
+    public PokeDataDto(Long id, Integer dex, String nameDe, String nameEn, String nameFr, String nameJa, String nameKr, String nameZh, String family, List<String> types, Boolean shiny, String variant, String image, String region) {
+        this.id = id;
         this.dex = dex;
         this.nameDe = nameDe;
         this.nameEn = nameEn;
@@ -25,7 +30,18 @@ public class PokeDataDto {
         this.nameZh = nameZh;
         this.family = family;
         this.types = types;
+        this.shiny = shiny;
+        this.variant = variant;
+        this.image = image;
         this.region = region;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getDex() {
@@ -106,5 +122,29 @@ public class PokeDataDto {
 
     public void setRegion(String region) {
         this.region = region;
+    }
+
+    public Boolean getShiny() {
+        return shiny;
+    }
+
+    public void setShiny(Boolean shiny) {
+        this.shiny = shiny;
+    }
+
+    public String getVariant() {
+        return variant;
+    }
+
+    public void setVariant(String variant) {
+        this.variant = variant;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

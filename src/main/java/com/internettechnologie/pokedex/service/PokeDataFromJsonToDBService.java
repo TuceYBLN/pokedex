@@ -77,6 +77,7 @@ public class PokeDataFromJsonToDBService {
             int pokeDexFromVariant = Integer.parseInt(splittedPokeInfo[2]);
 
             PokeVariant variant = new PokeVariant();
+            variant.setImage(variantDataFromDto);
             variant.setDex(pokeDexFromVariant);
 
             Pokemon pokemon = pokemonRepository.findByDex(pokeDexFromVariant);

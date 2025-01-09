@@ -30,6 +30,9 @@ public class PokeVariant {
     @JoinColumn(name = "POKE_OWNER", referencedColumnName = "ID")
     private PokeOwner pokeOwner;
 
+    @Column(name = "IMAGE")
+    private String image;
+
     public Long getId() {
         return id;
     }
@@ -76,5 +79,13 @@ public class PokeVariant {
 
     public void setPokeOwner(PokeOwner pokeOwner) {
         this.pokeOwner = pokeOwner;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
