@@ -8,6 +8,11 @@ import axios from "axios";
 
 function App() {
   const [message, setMessage] = useState([]);
+  const [language, setLanguage] = useState("Deutsch");
+
+  const changeLanguage = (text) => {
+    setLanguage(text);
+  };
 
   const getData = async () => {
     try {
@@ -24,7 +29,7 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <Header currentLanguage={language} onChangeLanguage={changeLanguage}/>
       <Searchbar />
       <div
         style={{

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Navbar, NavDropdown, Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function LanguageButton() {
+function LanguageButton({currentLanguage, onChangeLanguage}) {
     const allLanguages = {
         DE: {
             image: `${process.env.PUBLIC_URL}/Bilder/Laender/deutschland.png`,
@@ -25,22 +25,17 @@ function LanguageButton() {
             label: '中文'
         }
     };
-    const[language, setLanguage] = useState('Deutsch');
 
+    const currentLanguageDetails = Object.values(allLanguages).find(lang => lang.label === currentLanguage);
 
-    const currentLanguage = Object.values(allLanguages).find(lang => lang.label === language);
-
-    const changeLanguage = (text) => {
-        setLanguage(text);
-    }
 
         return (
                  <div className="custom-navbar">
                      <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                          <Nav>
-                             <NavDropdown title={<span><img src={currentLanguage.image} alt="Sprachenauswahl" /> {language}</span>} id="basic-nav-dropdown">
+                             <NavDropdown title={<span><img src={currentLanguageDetails.image} alt="Sprachenauswahl" /> {currentLanguage}</span>} id="basic-nav-dropdown">
                                  {Object.values(allLanguages).map(lang => (
-                                     <NavDropdown.Item key={lang.label} onClick={() => changeLanguage(lang.label)}>
+                                     <NavDropdown.Item key={lang.label} onClick={() => onChangeLanguage(lang.label)}>
                                          <img src={lang.image} alt="Sprache" /> {lang.label}
                                      </NavDropdown.Item>
                                  ))}
