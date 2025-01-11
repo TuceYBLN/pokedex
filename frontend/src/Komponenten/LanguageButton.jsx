@@ -12,6 +12,10 @@ function LanguageButton({currentLanguage, onChangeLanguage}) {
             image: `${process.env.PUBLIC_URL}/Bilder/Laender/vereinigtes-konigreich.png`,
             label: 'English'
         },
+        FR: {
+                    image: `${process.env.PUBLIC_URL}/Bilder/Laender/frankreich.png`,
+                    label: 'Français'
+                },
         KO: {
             image: `${process.env.PUBLIC_URL}/Bilder/Laender/sudkorea.png`,
             label: '한글'
