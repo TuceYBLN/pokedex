@@ -40,6 +40,27 @@ function App() {
         className="content-padding"
       >
         {message.map((pokevariant, index) => {
+        let name;
+        switch(language){
+        case 'Deutsch':
+            name = pokevariant.nameDe;
+            break;
+        case 'English':
+            name = pokevariant.nameEn;
+            break;
+        case 'Français':
+            name = pokevariant.nameFr;
+            break;
+        case '한글':
+            name = pokevariant.nameKr;
+            break;
+        case '日本':
+                    name = pokevariant.nameJa;
+                    break;
+        case '中文':
+                    name = pokevariant.nameZh;
+                    break;
+        }
           return (
             <PokeCard
               key={index}
@@ -49,7 +70,7 @@ function App() {
               shiny={pokevariant.shiny}
               region={pokevariant.region}
               family={pokevariant.family}
-              name={pokevariant.nameDe}
+              name={name}
             />
           );
         })}
