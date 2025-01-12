@@ -1,18 +1,18 @@
 package com.internettechnologie.pokedex.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
 
-@Data
 @Entity
 @Table(name = "POKE_OWNER")
 public class PokeOwner {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "VARIANT_ID")
     private PokeVariant pokeVariant;

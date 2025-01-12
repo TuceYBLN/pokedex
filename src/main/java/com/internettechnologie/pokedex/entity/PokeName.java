@@ -1,9 +1,9 @@
 package com.internettechnologie.pokedex.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Data
 @Entity
 @Table(name = "POKE_NAME")
 public class PokeName {
@@ -13,6 +13,7 @@ public class PokeName {
     @Column(name = "ID", nullable = false)
     private Long id;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "POKEMON_ID", referencedColumnName = "ID")
     private Pokemon pokemon;
