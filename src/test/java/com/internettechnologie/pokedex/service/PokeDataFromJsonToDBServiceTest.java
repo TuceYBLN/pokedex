@@ -17,10 +17,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,7 +101,7 @@ class PokeDataFromJsonToDBServiceTest {
         variantOne.setId(1L);
         variantOne.setDex(2);
         variantOne.setPokemon(pokemon);
-        variantOne.setPokeOwner(null);
+        variantOne.setOwned(false);
         variantOne.setShiny(false);
         variantOne.setVariant("00");
         pokeVariant.add(variantOne);
@@ -112,7 +110,7 @@ class PokeDataFromJsonToDBServiceTest {
         variantTwo.setId(2L);
         variantTwo.setDex(2);
         variantTwo.setPokemon(pokemon);
-        variantTwo.setPokeOwner(null);
+        variantTwo.setOwned(false);
         variantTwo.setShiny(true);
         variantOne.setVariant("00");
         pokeVariant.add(variantTwo);

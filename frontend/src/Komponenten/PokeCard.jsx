@@ -1,12 +1,15 @@
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
+import React from "react";
 
-function PokeCard({image, id, variant, shiny, region, family, name}) {
+function PokeCard({image, id, variant, shiny, region, family, name, caught, handleToggle}) {
+
+
   return (
     <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top"  src={`${process.env.PUBLIC_URL}/Bilder/Pokemon/${image}.png`}/>
+      <Card.Img variant="top"  src={`${process.env.PUBLIC_URL}/Bilder/Pokemon/${image}.png`} alt="pokemon"/>
       <Card.Body>
-        <Card.Title>#{id} {name} {shiny && <img src={process.env.PUBLIC_URL + "/Bilder/Other/shiny.png"} />}</Card.Title>
+        <Card.Title>#{id} {name} {shiny && <img src={process.env.PUBLIC_URL + "/Bilder/Other/shiny.png"} alt="shiny"/>}</Card.Title>
         <Card.Text>
           Family: {family}
         </Card.Text>
@@ -16,7 +19,15 @@ function PokeCard({image, id, variant, shiny, region, family, name}) {
         <Card.Text>
           Region: {region}
         </Card.Text>
-        <Button variant="primary">CAUGHT</Button>
+            <Form>
+              <Form.Check
+                type="switch"
+                id="custom-switch"
+                label="CAUGHT"
+                checked={caught}
+                onChange={handleToggle}
+              />
+              </Form>
       </Card.Body>
     </Card>
   );

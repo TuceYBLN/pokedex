@@ -18,8 +18,12 @@ public class PokeDataDto {
     private String variant;
     private String image;
     private String region;
+    private Boolean isOwned;
 
-    public PokeDataDto(Long id, Integer dex, String nameDe, String nameEn, String nameFr, String nameJa, String nameKr, String nameZh, String family, List<String> types, Boolean shiny, String variant, String image, String region) {
+    public PokeDataDto() {
+    }
+
+    public PokeDataDto(Long id, Integer dex, String nameDe, String nameEn, String nameFr, String nameJa, String nameKr, String nameZh, String family, List<String> types, Boolean shiny, String variant, String image, String region, Boolean isOwned) {
         this.id = id;
         this.dex = dex;
         this.nameDe = nameDe;
@@ -34,6 +38,7 @@ public class PokeDataDto {
         this.variant = variant;
         this.image = image;
         this.region = region;
+        this.isOwned = isOwned;
     }
 
     public Long getId() {
@@ -146,5 +151,13 @@ public class PokeDataDto {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Boolean getOwned() {
+        return isOwned;
+    }
+
+    public void setOwned(Boolean owned) {
+        isOwned = owned;
     }
 }

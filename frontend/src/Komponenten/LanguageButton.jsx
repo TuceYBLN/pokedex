@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Navbar, NavDropdown, Nav, Container } from "react-bootstrap";
+import React from "react";
+import { Navbar, NavDropdown, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function LanguageButton({ currentLanguage, onChangeLanguage }) {

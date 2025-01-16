@@ -1,7 +1,5 @@
 package com.internettechnologie.pokedex.service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.internettechnologie.pokedex.dto.PokeDataDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -33,7 +31,7 @@ public class PokeDataService {
                 "shiny,\n" +
                 "variant,\n" +
                 "image,\n" +
-                "pokemon.region FROM pokemon JOIN poke_name ON pokemon.pokename_id = poke_name.pokemon_id JOIN pokemon_types ON pokemon_types.pokemon_id = pokemon.id JOIN poke_variant ON pokemon.id = poke_variant.pokemon_id;\n";
+                "pokemon.region, is_owned FROM pokemon JOIN poke_name ON pokemon.pokename_id = poke_name.pokemon_id JOIN pokemon_types ON pokemon_types.pokemon_id = pokemon.id JOIN poke_variant ON pokemon.id = poke_variant.pokemon_id;\n";
 
         Query query = entityManager.createNativeQuery(sql);
 
@@ -57,11 +55,12 @@ public class PokeDataService {
             String variant = (String) row[11];
             String image = (String) row[12];
             String region = (String) row[13];
+            Boolean isOwned = (Boolean) row[14];
 
             PokeDataDto dto = groupedByVariantId.get(id);
 
             if(dto == null){
-                dto = new PokeDataDto(id, dex, name_de, name_en, name_fr, name_ja, name_kr, name_zh, family, new ArrayList<>(), shiny, variant, image, region);
+                dto = new PokeDataDto(id, dex, name_de, name_en, name_fr, name_ja, name_kr, name_zh, family, new ArrayList<>(), shiny, variant, image, region, isOwned);
                 groupedByVariantId.put(id, dto);
             }
             dto.getTypes().add(types);

@@ -9,7 +9,7 @@ import lombok.Data;
 public class PokeVariant {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
     private Long id;
 
@@ -26,9 +26,8 @@ public class PokeVariant {
     @Column(name = "SHINY")
     private Boolean shiny;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "POKE_OWNER", referencedColumnName = "ID")
-    private PokeOwner pokeOwner;
+    @Column(name = "IS_OWNED", nullable = false)
+    private Boolean isOwned;
 
     @Column(name = "IMAGE")
     private String image;
@@ -73,12 +72,12 @@ public class PokeVariant {
         this.shiny = shiny;
     }
 
-    public PokeOwner getPokeOwner() {
-        return pokeOwner;
+    public Boolean getOwned() {
+        return isOwned;
     }
 
-    public void setPokeOwner(PokeOwner pokeOwner) {
-        this.pokeOwner = pokeOwner;
+    public void setOwned(Boolean owned) {
+        isOwned = owned;
     }
 
     public String getImage() {

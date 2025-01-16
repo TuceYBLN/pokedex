@@ -79,6 +79,7 @@ public class PokeDataFromJsonToDBService {
             PokeVariant variant = new PokeVariant();
             variant.setImage(variantDataFromDto);
             variant.setDex(pokeDexFromVariant);
+            variant.setOwned(false);
 
             Pokemon pokemon = pokemonRepository.findByDex(pokeDexFromVariant);
 

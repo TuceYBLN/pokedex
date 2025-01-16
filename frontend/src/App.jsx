@@ -9,6 +9,8 @@ import axios from "axios";
 function App() {
   const [message, setMessage] = useState([]);
   const [language, setLanguage] = useState("Deutsch");
+  const [caughtStatus, setCaughtStatus] = useState({});
+
 
   const changeLanguage = (text) => {
     setLanguage(text);
@@ -18,10 +20,40 @@ function App() {
     try {
       const response = await axios.get("http://localhost:8080/pokedata");
       setMessage(response.data);
+      //uberprueft ob owned false ist -> wenn nicht, dann wird caught auf true gesetzt
+      const initialCaughtStatus = {};
+      response.data.forEach(pokevariant => {
+      initialCaughtStatus[pokevariant.id] = pokevariant.owned;
+      });
+      setCaughtStatus(initialCaughtStatus);
     } catch (error) {
       console.error("Fetching error: ", error);
     }
   };
+
+const handleToggle = async (variantId) => {
+    setCaughtStatus((prev) => {
+      const newCaughtStatus = { ...prev, [variantId]: !prev[variantId] };
+
+      const variantIdForPokeOwner = { id: variantId };
+
+      if (newCaughtStatus[variantId]) {
+        postOwner(variantIdForPokeOwner);
+      }
+
+      return newCaughtStatus;
+    });
+  };
+
+  const postOwner = async (data) => {
+    try {
+      const response = await axios.post("http://localhost:8080/owner", data);
+      console.log("Owner gesetzt:", response.data);
+    } catch (error) {
+      console.error("Fetching error:", error);
+    }
+  };
+
 
   useEffect(() => {
     getData();
@@ -60,7 +92,10 @@ function App() {
             case "中文":
               name = pokevariant.nameZh;
               break;
+            default:
+                console.log("Sorry wanted language not available.")
           }
+
           return (
             <PokeCard
               key={index}
@@ -71,6 +106,8 @@ function App() {
               region={pokevariant.region}
               family={pokevariant.family}
               name={name}
+              caught={caughtStatus[pokevariant.id] || false}
+              handleToggle={() => handleToggle(pokevariant.id)}
             />
           );
         })}
