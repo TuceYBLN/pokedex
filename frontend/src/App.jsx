@@ -34,13 +34,10 @@ function App() {
 const handleToggle = async (variantId) => {
     setCaughtStatus((prev) => {
       const newCaughtStatus = { ...prev, [variantId]: !prev[variantId] };
-
-      const variantIdForPokeOwner = { id: variantId };
-
-      postOwner(variantIdForPokeOwner);
-
       return newCaughtStatus;
     });
+      const variantIdForPokeOwner = { id: variantId };
+      postOwner(variantIdForPokeOwner);
   };
 
   const postOwner = async (data) => {
