@@ -1,5 +1,6 @@
 package com.internettechnologie.pokedex.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,6 +21,7 @@ public class Pokemon {
     @JoinColumn(name = "POKENAME_ID", referencedColumnName = "ID")
     private PokeName pokeName;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "pokemon", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PokeVariant> pokeVariant = new ArrayList<>();
 

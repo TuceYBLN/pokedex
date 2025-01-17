@@ -1,9 +1,8 @@
 package com.internettechnologie.pokedex.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Data;
 
-@Data
 @Entity
 @Table(name = "POKE_VARIANT")
 public class PokeVariant {
@@ -13,6 +12,7 @@ public class PokeVariant {
     @Column(name = "ID", nullable = false)
     private Long id;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "POKEMON_ID")
     private Pokemon pokemon;
