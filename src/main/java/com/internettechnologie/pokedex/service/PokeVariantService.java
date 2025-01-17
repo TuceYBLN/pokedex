@@ -20,7 +20,9 @@ public class PokeVariantService {
 
     public PokeVariant save(PokeVariantOwnedDto id) {
         PokeVariant pokeVariant = getById(id.getId());
-        pokeVariant.setOwned(true);
+        boolean currentOwnerStatus = pokeVariant.getOwned();
+        //Gegenteil des aktuelllen Wertes in der DB wird gesetzt
+        pokeVariant.setOwned(!currentOwnerStatus);
         return pokeVariantRepository.save(pokeVariant);
     }
 }

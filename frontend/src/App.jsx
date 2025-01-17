@@ -37,9 +37,7 @@ const handleToggle = async (variantId) => {
 
       const variantIdForPokeOwner = { id: variantId };
 
-      if (newCaughtStatus[variantId]) {
-        postOwner(variantIdForPokeOwner);
-      }
+      postOwner(variantIdForPokeOwner);
 
       return newCaughtStatus;
     });
