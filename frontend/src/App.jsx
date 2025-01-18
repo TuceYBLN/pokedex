@@ -62,11 +62,14 @@ function App() {
     return <div>Loading...</div>;
   }
 
+  const caughtShinyCount = message.filter(poke => poke.shiny && caughtStatus[poke.id]).length;
+  const shinyTotalCount = message.filter(poke => poke.shiny).length;
+
   return (
     <div>
       <Header currentLanguage={language} onChangeLanguage={changeLanguage} />
       <Searchbar />
-      <Progress pokemon={message} />
+      <Progress shinyCount={caughtShinyCount} shinyTotal={shinyTotalCount}/>
       <div
         style={{
           display: "grid",
