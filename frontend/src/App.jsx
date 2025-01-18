@@ -29,7 +29,7 @@ function App() {
       setCaughtStatus(initialCaughtStatus);
     } catch (error) {
       console.error("Fetching error: ", error);
-    }finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -39,7 +39,7 @@ function App() {
       const newCaughtStatus = { ...prev, [variantId]: !prev[variantId] };
       return newCaughtStatus;
     });
-    
+
     const variantIdForPokeOwner = { id: variantId };
 
     postOwner(variantIdForPokeOwner);
@@ -57,15 +57,16 @@ function App() {
   useEffect(() => {
     getData();
   }, []);
+
   if (loading) {
     return <div>Loading...</div>;
-}
+  }
 
   return (
     <div>
       <Header currentLanguage={language} onChangeLanguage={changeLanguage} />
       <Searchbar />
-      <Progress pokemon={message}/>
+      <Progress pokemon={message} />
       <div
         style={{
           display: "grid",
