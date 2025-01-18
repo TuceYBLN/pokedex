@@ -8,7 +8,7 @@ function Header({currentLanguage, onChangeLanguage}) {
           <div className="custom-navbar">
             <Navbar expand="lg" className="bg-body-tertiary">
               <Container>
-                <Navbar.Brand href="/">Pokédex</Navbar.Brand>
+                <Navbar.Brand href="/"><img src={`${process.env.PUBLIC_URL}/Bilder/Other/pokeball.png`} alt="Pokeball"/> Pokédex</Navbar.Brand>
                    <LanguageButton currentLanguage={currentLanguage} onChangeLanguage={onChangeLanguage}/>
               </Container>
             </Navbar>
