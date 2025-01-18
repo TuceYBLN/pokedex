@@ -12,6 +12,7 @@ function App() {
   const [language, setLanguage] = useState("Deutsch");
   const [caughtStatus, setCaughtStatus] = useState({});
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const changeLanguage = (text) => {
     setLanguage(text);
@@ -65,10 +66,22 @@ function App() {
   const caughtShinyCount = message.filter(poke => poke.shiny && caughtStatus[poke.id]).length;
   const shinyTotalCount = message.filter(poke => poke.shiny).length;
 
+  // sucht nach einem Match - zuerst alles kleingeschrieben fuer Vergleich und dann wird mit include gesucht statt nach einem 100% Match zu suchen
+  const filteredMessage = message.filter((pokevariant) => {
+    return (
+        pokevariant.nameDe.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        pokevariant.nameEn.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        pokevariant.nameFr.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        pokevariant.nameKr.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        pokevariant.nameJa.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        pokevariant.nameZh.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  });
+
   return (
     <div>
       <Header currentLanguage={language} onChangeLanguage={changeLanguage} />
-      <Searchbar />
+      <Searchbar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
       <Progress shinyCount={caughtShinyCount} shinyTotal={shinyTotalCount}/>
       <div
         style={{
@@ -78,7 +91,7 @@ function App() {
         }}
         className="content-padding"
       >
-        {message.map((pokevariant, index) => {
+        {filteredMessage.map((pokevariant, index) => {
           let name;
           switch (language) {
             case "Deutsch":
