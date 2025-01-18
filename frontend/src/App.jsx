@@ -3,6 +3,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./Komponenten/Header";
 import Searchbar from "./Komponenten/Searchbar";
+import Progress from "./Komponenten/Progress";
 import PokeCard from "./Komponenten/PokeCard";
 import axios from "axios";
 
@@ -10,7 +11,7 @@ function App() {
   const [message, setMessage] = useState([]);
   const [language, setLanguage] = useState("Deutsch");
   const [caughtStatus, setCaughtStatus] = useState({});
-
+  const [loading, setLoading] = useState(true);
 
   const changeLanguage = (text) => {
     setLanguage(text);
@@ -22,22 +23,26 @@ function App() {
       setMessage(response.data);
       //uberprueft ob owned false ist -> wenn nicht, dann wird caught auf true gesetzt
       const initialCaughtStatus = {};
-      response.data.forEach(pokevariant => {
-      initialCaughtStatus[pokevariant.id] = pokevariant.owned;
+      response.data.forEach((pokevariant) => {
+        initialCaughtStatus[pokevariant.id] = pokevariant.owned;
       });
       setCaughtStatus(initialCaughtStatus);
     } catch (error) {
       console.error("Fetching error: ", error);
+    }finally{
+      setLoading(false);
     }
   };
 
-const handleToggle = async (variantId) => {
+  const handleToggle = async (variantId) => {
     setCaughtStatus((prev) => {
       const newCaughtStatus = { ...prev, [variantId]: !prev[variantId] };
       return newCaughtStatus;
     });
-      const variantIdForPokeOwner = { id: variantId };
-      postOwner(variantIdForPokeOwner);
+    
+    const variantIdForPokeOwner = { id: variantId };
+
+    postOwner(variantIdForPokeOwner);
   };
 
   const postOwner = async (data) => {
@@ -49,15 +54,18 @@ const handleToggle = async (variantId) => {
     }
   };
 
-
   useEffect(() => {
     getData();
   }, []);
+  if (loading) {
+    return <div>Loading...</div>;
+}
 
   return (
     <div>
       <Header currentLanguage={language} onChangeLanguage={changeLanguage} />
       <Searchbar />
+      <Progress pokemon={message}/>
       <div
         style={{
           display: "grid",
@@ -88,7 +96,7 @@ const handleToggle = async (variantId) => {
               name = pokevariant.nameZh;
               break;
             default:
-                console.log("Sorry wanted language not available.")
+              console.log("Sorry wanted language not available.");
           }
 
           return (
@@ -101,7 +109,7 @@ const handleToggle = async (variantId) => {
               region={pokevariant.region}
               family={pokevariant.family}
               name={name}
-              caught={caughtStatus[pokevariant.id] || false}
+              caught={caughtStatus[pokevariant.id]}
               handleToggle={() => handleToggle(pokevariant.id)}
             />
           );
