@@ -30,8 +30,8 @@ function Filter({filters, setFilters}) {
         </Dropdown.Menu>
       </Dropdown>
       <Form>
-        <Form.Check label="Shiny" />
-        <Form.Check label="Owning" />
+        <Form.Check type="checkbox"  label="Shiny" onClick={(e) => handleSelect('shiny')(e.target.checked)}/>
+        <Form.Check type="checkbox"  label="Owning" onClick={(e) => handleSelect('owned')(e.target.checked)}/>
       </Form>
     </div>
   );

@@ -83,7 +83,9 @@ function App() {
         pokevariant.nameZh.toLowerCase().includes(searchQuery.toLowerCase());
 
     const regionResult = !filters.region || pokevariant.region === filters.region;
-    return searchQueryResult && regionResult;
+    const shinyResult = !filters.shiny || pokevariant.shiny === filters.shiny;
+    const ownedResult = !filters.owned || pokevariant.owned === filters.owned;
+    return searchQueryResult && regionResult && shinyResult && ownedResult;
   });
 
   return (
