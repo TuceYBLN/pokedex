@@ -1,10 +1,13 @@
 import Form from "react-bootstrap/Form";
+import {useState} from "react";
 
 function Searchbar({ searchQuery, setSearchQuery }) {
+    const [inputValue, setInputValue] = useState(searchQuery);
 
     // nicht re-rendern bei Enter
     const handleSubmit = (event) => {
         event.preventDefault();
+        setSearchQuery(inputValue);
     };
 
   return (
@@ -14,8 +17,13 @@ function Searchbar({ searchQuery, setSearchQuery }) {
           <Form.Control
             type="text"
             placeholder="Search"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                    handleSubmit(e); // nur bei Enter wird es ausgeführt, um das rerendern bei jeder Tasteneingabe zu verhindern
+                }
+            }}
           />
         </Form.Group>
       </Form>
