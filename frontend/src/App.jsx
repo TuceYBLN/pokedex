@@ -6,6 +6,7 @@ import Searchbar from "./Komponenten/Searchbar";
 import Progress from "./Komponenten/Progress";
 import PokeCard from "./Komponenten/PokeCard";
 import Filter from "./Komponenten/Filter";
+import Loading from "./Komponenten/Loading";
 import axios from "axios";
 
 function App() {
@@ -66,7 +67,7 @@ function App() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div><Loading /></div>;
   }
 
   const caughtShinyCount = message.filter(poke => poke.shiny && caughtStatus[poke.id]).length;
