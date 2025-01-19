@@ -85,12 +85,7 @@ function App() {
         <Filter />
       <Progress shinyCount={caughtShinyCount} shinyTotal={shinyTotalCount}/>
       <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-          gap: "10px",
-        }}
-        className="content-padding"
+        className="content-padding pokecard-container"
       >
         {filteredMessage.map((pokevariant, index) => {
           let name;
