@@ -2,7 +2,7 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import React from "react";
 
-function PokeCard({image, id, variant, shiny, region, family, name, caught, handleToggle}) {
+function PokeCard({image, id, variant, shiny, region, family, name, caught, types, handleToggle}) {
 
 
   return (
@@ -19,6 +19,9 @@ function PokeCard({image, id, variant, shiny, region, family, name, caught, hand
         <Card.Text>
           Region: {region}
         </Card.Text>
+          <Card.Text>
+              Type: {types.join(', ')}
+          </Card.Text>
             <Form>
               <Form.Check
                 type="switch"

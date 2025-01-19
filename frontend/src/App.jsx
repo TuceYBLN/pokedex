@@ -127,6 +127,7 @@ function App() {
               family={pokevariant.family}
               name={name}
               caught={caughtStatus[pokevariant.id]}
+              types={pokevariant.types}
               handleToggle={() => handleToggle(pokevariant.id)}
             />
           );
