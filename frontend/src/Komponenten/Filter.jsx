@@ -25,7 +25,7 @@ function Filter({filters, setFilters, pokeTypes}) {
       </Dropdown>
       <Dropdown className="filter-component">
         <Dropdown.Toggle id="dropdown-autoclose-true">{filters.types || "Types"}</Dropdown.Toggle>
-          <Dropdown.Menu>
+          <Dropdown.Menu className="dropdown-component">
               <Dropdown.Item onClick={() => handleSelect('types')('')}>Types</Dropdown.Item>
               <Dropdown.Divider />
             {pokeTypes.map((types, index) => (
