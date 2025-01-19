@@ -2,7 +2,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Form from "react-bootstrap/Form";
 import React from "react";
 
-function Filter({filters, setFilters}) {
+function Filter({filters, setFilters, pokeTypes}) {
 
     const handleSelect = (name) => (value) => {
         setFilters((prev) => ({
@@ -14,7 +14,7 @@ function Filter({filters, setFilters}) {
   return (
     <div className="content-padding filter-container">
       <Dropdown className="filter-component">
-        <Dropdown.Toggle id="dropdown-autoclose-true"> {filters.region || "Region"}</Dropdown.Toggle>
+        <Dropdown.Toggle id="dropdown-autoclose-true">{filters.region || "Region"}</Dropdown.Toggle>
           <Dropdown.Menu>
               <Dropdown.Item onClick={() => handleSelect('region')('')}>Region</Dropdown.Item>
               <Dropdown.Divider />
@@ -24,11 +24,13 @@ function Filter({filters, setFilters}) {
           </Dropdown.Menu>
       </Dropdown>
       <Dropdown className="filter-component">
-        <Dropdown.Toggle id="dropdown-autoclose-true">Types</Dropdown.Toggle>
-        <Dropdown.Menu>
-          <Dropdown.Item>Kanto</Dropdown.Item>
-          <Dropdown.Item>Johto</Dropdown.Item>
-          <Dropdown.Item>Hoenn</Dropdown.Item>
+        <Dropdown.Toggle id="dropdown-autoclose-true">{filters.types || "Types"}</Dropdown.Toggle>
+          <Dropdown.Menu>
+              <Dropdown.Item onClick={() => handleSelect('types')('')}>Types</Dropdown.Item>
+              <Dropdown.Divider />
+            {pokeTypes.map((types, index) => (
+                <Dropdown.Item key={index} onClick={() => handleSelect('types')(types)}>{types}</Dropdown.Item>
+            ))}
         </Dropdown.Menu>
       </Dropdown>
       <Form>

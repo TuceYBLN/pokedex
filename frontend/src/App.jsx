@@ -71,6 +71,9 @@ function App() {
 
   const caughtShinyCount = message.filter(poke => poke.shiny && caughtStatus[poke.id]).length;
   const shinyTotalCount = message.filter(poke => poke.shiny).length;
+  const pokeTypes = Array.from(
+      new Set(message.flatMap(poke => poke.types))
+  );
 
   // sucht nach einem Match - zuerst alles kleingeschrieben fuer Vergleich und dann wird mit include gesucht statt nach einem 100% Match zu suchen
   const filteredMessage = message.filter((pokevariant) => {
@@ -92,7 +95,7 @@ function App() {
     <div>
       <Header currentLanguage={language} onChangeLanguage={changeLanguage} />
       <Searchbar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
-        <Filter filters={filters} setFilters={setFilters} />
+        <Filter filters={filters} setFilters={setFilters} pokeTypes={pokeTypes}/>
       <Progress shinyCount={caughtShinyCount} shinyTotal={shinyTotalCount}/>
       <div
         className="content-padding pokecard-container"
