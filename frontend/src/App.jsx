@@ -14,6 +14,12 @@ function App() {
   const [caughtStatus, setCaughtStatus] = useState({});
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [filters, setFilters] = useState({
+    region: '',
+    type: '',
+    owned: '',
+    shiny: ''
+  })
 
   const changeLanguage = (text) => {
     setLanguage(text);
@@ -82,7 +88,7 @@ function App() {
     <div>
       <Header currentLanguage={language} onChangeLanguage={changeLanguage} />
       <Searchbar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
-        <Filter />
+        <Filter filters={filters} setFilters={setFilters} />
       <Progress shinyCount={caughtShinyCount} shinyTotal={shinyTotalCount}/>
       <div
         className="content-padding pokecard-container"
