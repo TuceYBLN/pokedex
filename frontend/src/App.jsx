@@ -5,6 +5,7 @@ import Header from "./Komponenten/Header";
 import Searchbar from "./Komponenten/Searchbar";
 import Progress from "./Komponenten/Progress";
 import PokeCard from "./Komponenten/PokeCard";
+import Filter from "./Komponenten/Filter";
 import axios from "axios";
 
 function App() {
@@ -37,8 +38,7 @@ function App() {
 
   const handleToggle = async (variantId) => {
     setCaughtStatus((prev) => {
-      const newCaughtStatus = { ...prev, [variantId]: !prev[variantId] };
-      return newCaughtStatus;
+      return  { ...prev, [variantId]: !prev[variantId] };
     });
 
     const variantIdForPokeOwner = { id: variantId };
@@ -82,6 +82,7 @@ function App() {
     <div>
       <Header currentLanguage={language} onChangeLanguage={changeLanguage} />
       <Searchbar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+        <Filter />
       <Progress shinyCount={caughtShinyCount} shinyTotal={shinyTotalCount}/>
       <div
         style={{
