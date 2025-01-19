@@ -88,7 +88,9 @@ function App() {
     const regionResult = !filters.region || pokevariant.region === filters.region;
     const shinyResult = !filters.shiny || pokevariant.shiny === filters.shiny;
     const ownedResult = !filters.owned || pokevariant.owned === filters.owned;
-    return searchQueryResult && regionResult && shinyResult && ownedResult;
+    const typesResult = !filters.types || pokevariant.types.includes(filters.types);
+
+    return searchQueryResult && regionResult && shinyResult && ownedResult && typesResult;
   });
 
   return (
