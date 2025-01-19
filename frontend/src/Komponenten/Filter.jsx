@@ -10,6 +10,7 @@ function Filter({filters, setFilters}) {
             [name]: value,
         }));
     }
+
   return (
     <div className="content-padding filter-container">
       <Dropdown className="filter-component">

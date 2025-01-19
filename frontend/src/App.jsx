@@ -74,14 +74,16 @@ function App() {
 
   // sucht nach einem Match - zuerst alles kleingeschrieben fuer Vergleich und dann wird mit include gesucht statt nach einem 100% Match zu suchen
   const filteredMessage = message.filter((pokevariant) => {
-    return (
+    const searchQueryResult =
         pokevariant.nameDe.toLowerCase().includes(searchQuery.toLowerCase()) ||
         pokevariant.nameEn.toLowerCase().includes(searchQuery.toLowerCase()) ||
         pokevariant.nameFr.toLowerCase().includes(searchQuery.toLowerCase()) ||
         pokevariant.nameKr.toLowerCase().includes(searchQuery.toLowerCase()) ||
         pokevariant.nameJa.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        pokevariant.nameZh.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+        pokevariant.nameZh.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const regionResult = !filters.region || pokevariant.region === filters.region;
+    return searchQueryResult && regionResult;
   });
 
   return (
