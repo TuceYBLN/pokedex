@@ -16,6 +16,8 @@ function Filter({filters, setFilters}) {
       <Dropdown className="filter-component">
         <Dropdown.Toggle id="dropdown-autoclose-true"> {filters.region || "Region"}</Dropdown.Toggle>
           <Dropdown.Menu>
+              <Dropdown.Item onClick={() => handleSelect('region')('')}>Region</Dropdown.Item>
+              <Dropdown.Divider />
               <Dropdown.Item onClick={() => handleSelect('region')('Kanto')}>Kanto</Dropdown.Item>
               <Dropdown.Item onClick={() => handleSelect('region')('Johto')}>Johto</Dropdown.Item>
               <Dropdown.Item onClick={() => handleSelect('region')('Hoenn')}>Hoenn</Dropdown.Item>
