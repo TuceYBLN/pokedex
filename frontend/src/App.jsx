@@ -57,6 +57,7 @@ function App() {
     try {
       const response = await axios.post("http://localhost:8080/owner", data);
       console.log("Owner gesetzt:", response.data);
+      getData();
     } catch (error) {
       console.error("Fetching error:", error);
     }
