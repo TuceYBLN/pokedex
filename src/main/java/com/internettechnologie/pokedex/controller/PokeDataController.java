@@ -17,7 +17,7 @@ public class PokeDataController {
     private PokeDataService pokeDataService;
 
     @GetMapping("/pokedata")
-    public List<PokeDataDto> getData(){
+    public List<PokeDataDto> getData() {
         return pokeDataService.getCombinedData();
     }
 }

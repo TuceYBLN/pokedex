@@ -113,7 +113,7 @@ public class PokeDataDto {
         this.family = family;
     }
 
-    public List<String>  getTypes() {
+    public List<String> getTypes() {
         return types;
     }
 

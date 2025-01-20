@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,10 +34,9 @@ public class PokeDataService {
                 "image,\n" +
                 "pokemon.region, is_owned FROM pokemon JOIN poke_name ON pokemon.pokename_id = poke_name.pokemon_id JOIN pokemon_types ON pokemon_types.pokemon_id = pokemon.id JOIN poke_variant ON pokemon.id = poke_variant.pokemon_id;\n";
 
+        // SQL Anfrage setzen und Ergebnisse in einer HashMap nach VariantID
         Query query = entityManager.createNativeQuery(sql);
-
         List<Object[]> results = query.getResultList();
-
         Map<Long, PokeDataDto> groupedByVariantId = new HashMap<>();
 
 
@@ -51,7 +51,7 @@ public class PokeDataService {
             String name_zh = (String) row[7];
             String family = (String) row[8];
             String types = (String) row[9];
-            Boolean shiny = (Boolean) row [10];
+            Boolean shiny = (Boolean) row[10];
             String variant = (String) row[11];
             String image = (String) row[12];
             String region = (String) row[13];
@@ -59,7 +59,8 @@ public class PokeDataService {
 
             PokeDataDto dto = groupedByVariantId.get(id);
 
-            if(dto == null){
+            // ID nicht auffindbar im aktuellen Stand des Dtos dann setzen
+            if (dto == null) {
                 dto = new PokeDataDto(id, dex, name_de, name_en, name_fr, name_ja, name_kr, name_zh, family, new ArrayList<>(), shiny, variant, image, region, isOwned);
                 groupedByVariantId.put(id, dto);
             }

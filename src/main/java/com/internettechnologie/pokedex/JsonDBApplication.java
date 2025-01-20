@@ -33,13 +33,17 @@ public class JsonDBApplication {
     @Bean
     CommandLineRunner runner(ConfigurableApplicationContext context, PokemonService pokemonService) {
         return args -> {
+            // JSON-Daten in Java-Objekte deserialisieren
             ObjectMapper mapper = new ObjectMapper();
-            TypeReference<List<PokemonDto>> typeReference = new TypeReference<>() {};
+            TypeReference<List<PokemonDto>> typeReference = new TypeReference<>() {
+            };
             InputStream inputStreamPokemon = TypeReference.class.getResourceAsStream("/data/Pokemon.json");
 
-            TypeReference<List<PokemonVariantDto>> typeReferenceForVariant = new TypeReference<>() {};
+            TypeReference<List<PokemonVariantDto>> typeReferenceForVariant = new TypeReference<>() {
+            };
             InputStream inputStreamPokemonVariante = TypeReference.class.getResourceAsStream("/data/Pokemon_Variante.json");
-             mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+            // Fehlermeldung dealtiviert bei unbekannten Eigenschaften im JSON
+            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
             try {
                 pokeDataFromJsonToDBService.moveJsonDatatoDB(mapper, typeReference, inputStreamPokemon, typeReferenceForVariant, inputStreamPokemonVariante);
                 //Spring Boot Application sollte sich beenden, wenn alles erfolgreich ausgefuehrt wurde. Status-Code 0 signalisiert Erfolgsmeldung.

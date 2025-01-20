@@ -7,7 +7,6 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
 @Entity
 @Table(name = "POKEMON")
 public class Pokemon {
@@ -31,12 +30,12 @@ public class Pokemon {
     //Quell: https://www.baeldung.com/java-jpa-persist-string-list
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     @Column(name = "TYPES")
-    private List<String>  types = new ArrayList<>();;
+    private List<String> types = new ArrayList<>();
 
-    @Column(name = "FAMILY", length=50)
+    @Column(name = "FAMILY", length = 50)
     private String family;
 
-    @Column(name = "REGION", length=50)
+    @Column(name = "REGION", length = 50)
     private String region;
 
     public Long getId() {

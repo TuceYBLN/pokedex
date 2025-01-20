@@ -31,6 +31,7 @@ public class PokeDataFromJsonToDBService {
     private PokeVariantRepository pokeVariantRepository;
 
     public void moveJsonDatatoDB(ObjectMapper mapper, TypeReference<List<PokemonDto>> typeReference, InputStream inputStreamPokemon, TypeReference<List<PokemonVariantDto>> typeReferenceForVariant, InputStream inputStreamPokemonVariante) throws IOException {
+        // Dtos setzen aus JSON-Dateien
         List<PokemonDto> pokemonDto = mapper.readValue(inputStreamPokemon, typeReference);
         List<PokemonVariantDto> pokemonVariantDto = mapper.readValue(inputStreamPokemonVariante, typeReferenceForVariant);
 
@@ -53,6 +54,7 @@ public class PokeDataFromJsonToDBService {
             pokemon.setDex(dto.getDex());
             pokemon.setTypes(dto.getTypes());
             pokemon.setFamily(dto.getFamily());
+            // Regionen setzen nach Zahl
             if (dto.getDex() >= 1 && dto.getDex() <= 151) {
                 pokemon.setRegion("Kanto");
             } else if (dto.getDex() >= 152 && dto.getDex() <= 251) {
@@ -73,6 +75,7 @@ public class PokeDataFromJsonToDBService {
 
         List<String> pokeVariant = pokemonVariantDto.get(0).getPokemonVariante();
         for (String variantDataFromDto : pokeVariant) {
+            // Bildbeschreibung zur Unterscheidung der Pokevarianten in DB speichern
             var splittedPokeInfo = variantDataFromDto.split("_");
             int pokeDexFromVariant = Integer.parseInt(splittedPokeInfo[2]);
 
@@ -82,7 +85,6 @@ public class PokeDataFromJsonToDBService {
             variant.setOwned(false);
 
             Pokemon pokemon = pokemonRepository.findByDex(pokeDexFromVariant);
-
             if (pokemon != null) {
                 variant.setPokemon(pokemon);
                 variant.setShiny(splittedPokeInfo[splittedPokeInfo.length - 1].equals("shiny"));
