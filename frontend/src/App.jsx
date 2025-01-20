@@ -16,16 +16,18 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({
-    region: '',
-    type: '',
-    owned: '',
-    shiny: ''
-  })
+    region: "",
+    type: "",
+    owned: "",
+    shiny: "",
+  });
 
+  // Sprache setzen
   const changeLanguage = (text) => {
     setLanguage(text);
   };
 
+  // Pokedaten fetchen
   const getData = async () => {
     try {
       const response = await axios.get("http://localhost:8080/pokedata");
@@ -39,20 +41,22 @@ function App() {
     } catch (error) {
       console.error("Fetching error: ", error);
     } finally {
+      // Loading zuruecksetzen
       setLoading(false);
     }
   };
 
+  // setzt caughtStatus und bereitet POST-Request vor
   const handleToggle = async (variantId) => {
     setCaughtStatus((prev) => {
-      return  { ...prev, [variantId]: !prev[variantId] };
+      return { ...prev, [variantId]: !prev[variantId] };
     });
 
     const variantIdForPokeOwner = { id: variantId };
-
-    postOwner(variantIdForPokeOwner);
+    await postOwner(variantIdForPokeOwner);
   };
 
+  // POST-Request fuer "is_owned"-Wert
   const postOwner = async (data) => {
     try {
       const response = await axios.post("http://localhost:8080/owner", data);
@@ -63,72 +67,101 @@ function App() {
     }
   };
 
+  // Daten fetchen beim Mounten
   useEffect(() => {
     getData();
   }, []);
 
+  // Laden-Komponente ausfuehren, wenn loading = true
   if (loading) {
-    return <div><Loading /></div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 
-  const caughtShinyCount = message.filter(poke => poke.shiny && caughtStatus[poke.id]).length;
-  const shinyTotalCount = message.filter(poke => poke.shiny).length;
-  const pokeTypes = Array.from(
-      new Set(message.flatMap(poke => poke.types))
-  );
+  // Anzahl der shiny-Pokémon im Besitz und insgesamt
+  const caughtShinyCount = message.filter(
+    (poke) => poke.shiny && caughtStatus[poke.id]
+  ).length;
+  const shinyTotalCount = message.filter((poke) => poke.shiny).length;
+  // alle Types der POKE_VARIANT-Types in einem Array umwandeln fuer Dropdown
+  const pokeTypes = Array.from(new Set(message.flatMap((poke) => poke.types)));
 
-  // sucht nach einem Match - zuerst alles kleingeschrieben fuer Vergleich und dann wird mit include gesucht statt nach einem 100% Match zu suchen
+  /**
+   * sucht nach einem Match der Such-Filtereingabe
+   * zuerst alles kleingeschrieben fuer Vergleich und
+   * dann wird mit include gesucht statt nach einem 100% Match zu suchen
+   * @param {Array} message - Array der Pokémon-Daten
+   * @returns {Array} - gefilterte Pokémon-Daten basierend auf Suchleiste oder Filterung
+   */
   const filteredMessage = message.filter((pokevariant) => {
     const searchQueryResult =
-        pokevariant.nameDe.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        pokevariant.nameEn.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        pokevariant.nameFr.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        pokevariant.nameKr.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        pokevariant.nameJa.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        pokevariant.nameZh.toLowerCase().includes(searchQuery.toLowerCase());
+      pokevariant.nameDe.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      pokevariant.nameEn.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      pokevariant.nameFr.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      pokevariant.nameKr.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      pokevariant.nameJa.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      pokevariant.nameZh.toLowerCase().includes(searchQuery.toLowerCase());
 
-    const regionResult = !filters.region || pokevariant.region === filters.region;
+    const regionResult =
+      !filters.region || pokevariant.region === filters.region;
     const shinyResult = !filters.shiny || pokevariant.shiny === filters.shiny;
     const ownedResult = !filters.owned || pokevariant.owned === filters.owned;
-    const typesResult = !filters.types || pokevariant.types.includes(filters.types);
+    const typesResult =
+      !filters.types || pokevariant.types.includes(filters.types);
 
-    return searchQueryResult && regionResult && shinyResult && ownedResult && typesResult;
+    return (
+      searchQueryResult &&
+      regionResult &&
+      shinyResult &&
+      ownedResult &&
+      typesResult
+    );
   });
+
+  /**
+   * Basierend auf die ausgewaehlte Sprache wird der Name ausgegeben.
+   * @param {Object} pokevariant - Zu untersuchende Pokévarianten nach GET-Request und Such-Filteroperationen.
+   * @returns {string} - Name des Pokémons basierend auf die Sprache.
+   */
+  const getPokemonNameBasedOnLanguage = (pokevariant) => {
+    let name;
+    switch (language) {
+      case "Deutsch":
+        name = pokevariant.nameDe;
+        break;
+      case "English":
+        name = pokevariant.nameEn;
+        break;
+      case "Français":
+        name = pokevariant.nameFr;
+        break;
+      case "한글":
+        name = pokevariant.nameKr;
+        break;
+      case "日本":
+        name = pokevariant.nameJa;
+        break;
+      case "中文":
+        name = pokevariant.nameZh;
+        break;
+      default:
+        console.log("Sorry wanted language not available.");
+    }
+    return name;
+  };
 
   return (
     <div>
       <Header currentLanguage={language} onChangeLanguage={changeLanguage} />
-      <Searchbar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
-        <Filter filters={filters} setFilters={setFilters} pokeTypes={pokeTypes}/>
-      <Progress shinyCount={caughtShinyCount} shinyTotal={shinyTotalCount}/>
-      <div
-        className="content-padding pokecard-container"
-      >
+      <Searchbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <Filter filters={filters} setFilters={setFilters} pokeTypes={pokeTypes} />
+      <Progress shinyCount={caughtShinyCount} shinyTotal={shinyTotalCount} />
+      <div className="content-padding pokecard-container">
         {filteredMessage.map((pokevariant, index) => {
-          let name;
-          switch (language) {
-            case "Deutsch":
-              name = pokevariant.nameDe;
-              break;
-            case "English":
-              name = pokevariant.nameEn;
-              break;
-            case "Français":
-              name = pokevariant.nameFr;
-              break;
-            case "한글":
-              name = pokevariant.nameKr;
-              break;
-            case "日本":
-              name = pokevariant.nameJa;
-              break;
-            case "中文":
-              name = pokevariant.nameZh;
-              break;
-            default:
-              console.log("Sorry wanted language not available.");
-          }
-
+          let name = getPokemonNameBasedOnLanguage(pokevariant);
           return (
             <PokeCard
               key={index}
