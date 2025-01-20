@@ -35,7 +35,7 @@ function LanguageButton({ currentLanguage, onChangeLanguage }) {
   );
 
   return (
-    <div className="custom-navbar">
+    <div className="language-dropdown">
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
         <Nav>
           <NavDropdown
