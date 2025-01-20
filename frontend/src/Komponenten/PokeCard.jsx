@@ -26,7 +26,7 @@ function PokeCard({image, id, variant, shiny, region, family, name, caught, type
               <Form.Check
                 type="switch"
                 id="custom-switch"
-                label="CAUGHT"
+                label="Captured!"
                 checked={caught}
                 onChange={handleToggle}
               />
