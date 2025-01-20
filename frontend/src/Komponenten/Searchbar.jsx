@@ -4,7 +4,7 @@ import {useState} from "react";
 function Searchbar({ searchQuery, setSearchQuery }) {
     const [inputValue, setInputValue] = useState(searchQuery);
 
-    // nicht re-rendern bei Enter
+    // Funktion zum Verarbeiten des Formular-Submit
     const handleSubmit = (event) => {
         event.preventDefault();
         setSearchQuery(inputValue);
@@ -21,7 +21,7 @@ function Searchbar({ searchQuery, setSearchQuery }) {
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={(e) => {
                 if (e.key === 'Enter') {
-                    handleSubmit(e); // nur bei Enter wird es ausgeführt, um das rerendern bei jeder Tasteneingabe zu verhindern
+                    handleSubmit(e); // nur bei Enter wird es ausgefuehrt, um das rerendern bei jeder Tasteneingabe zu verhindern
                 }
             }}
           />

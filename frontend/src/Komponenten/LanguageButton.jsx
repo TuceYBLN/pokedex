@@ -3,6 +3,7 @@ import { Navbar, NavDropdown, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function LanguageButton({ currentLanguage, onChangeLanguage }) {
+  // Definition aller verfügbaren Sprachen mit ihren Details
   const allLanguages = {
     DE: {
       image: `${process.env.PUBLIC_URL}/Bilder/Laender/deutschland.png`,
@@ -30,6 +31,7 @@ function LanguageButton({ currentLanguage, onChangeLanguage }) {
     },
   };
 
+  // aktuelle Sprachdetails basierend auf dem aktuellen Sprachlabel
   const currentLanguageDetails = Object.values(allLanguages).find(
     (lang) => lang.label === currentLanguage
   );
