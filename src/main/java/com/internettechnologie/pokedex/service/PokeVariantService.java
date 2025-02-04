@@ -14,15 +14,9 @@ public class PokeVariantService {
     @Autowired
     private PokeVariantRepository pokeVariantRepository;
 
-    public List<PokeVariant> findAllPokeVariants() {
-        return pokeVariantRepository.findAll();
-    }
-
     public PokeVariant getById(Long id) {
         return pokeVariantRepository.getReferenceById(id);
     }
-
-    ;
 
     public PokeVariant save(PokeVariantOwnedDto id) {
         PokeVariant pokeVariant = getById(id.getId());
