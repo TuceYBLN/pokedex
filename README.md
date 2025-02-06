@@ -18,7 +18,7 @@ Liste der verwendeten Technologien und Frameworks:
 - Frontend: React, Bootstrap
 - Backend: Java, Spring
 - Datenbank: MySql
-- Weitere Tools: Postman
+- Weitere Tools: Postman, MySql Workbench
 
 ## Verwendung
 
