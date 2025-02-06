@@ -30,7 +30,7 @@ function App() {
   // Pokedaten fetchen
   const getData = async () => {
     try {
-      const response = await axios.get("http://localhost:8090/pokedata");
+      const response = await axios.get("http://localhost:8080/pokedata");
       setMessage(response.data);
       //uberprueft ob owned false ist -> wenn nicht, dann wird caught auf true gesetzt
       const initialCaughtStatus = {};
@@ -59,7 +59,7 @@ function App() {
   // POST-Request fuer "is_owned"-Wert
   const postOwner = async (data) => {
     try {
-      const response = await axios.post("http://localhost:8090/owner", data);
+      const response = await axios.post("http://localhost:8080/owner", data);
       console.log("Owner gesetzt:", response.data);
       getData();
     } catch (error) {
@@ -67,7 +67,7 @@ function App() {
     }
   };
 
-  // Daten fetchen beim Mounten
+  // Daten fetchen mit axios
   useEffect(() => {
     getData();
   }, []);
