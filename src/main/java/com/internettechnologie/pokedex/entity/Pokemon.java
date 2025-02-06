@@ -2,7 +2,6 @@ package com.internettechnologie.pokedex.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
