@@ -99,7 +99,6 @@ class PokeDataFromJsonToDBServiceTest {
         List<PokeVariant> pokeVariant = new ArrayList<>();
         PokeVariant variantOne = new PokeVariant();
         variantOne.setId(1L);
-        variantOne.setDex(2);
         variantOne.setPokemon(pokemon);
         variantOne.setOwned(false);
         variantOne.setShiny(false);
@@ -108,7 +107,6 @@ class PokeDataFromJsonToDBServiceTest {
 
         PokeVariant variantTwo = new PokeVariant();
         variantTwo.setId(2L);
-        variantTwo.setDex(2);
         variantTwo.setPokemon(pokemon);
         variantTwo.setOwned(false);
         variantTwo.setShiny(true);

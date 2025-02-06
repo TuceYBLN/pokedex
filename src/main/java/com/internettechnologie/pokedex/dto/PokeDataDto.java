@@ -14,7 +14,7 @@ public class PokeDataDto {
     private String nameZh;
     private String family;
     private List<String> types;
-    private Boolean shiny;
+    private Boolean isShiny;
     private String variant;
     private String image;
     private String region;
@@ -23,7 +23,7 @@ public class PokeDataDto {
     public PokeDataDto() {
     }
 
-    public PokeDataDto(Long id, Integer dex, String nameDe, String nameEn, String nameFr, String nameJa, String nameKr, String nameZh, String family, List<String> types, Boolean shiny, String variant, String image, String region, Boolean isOwned) {
+    public PokeDataDto(Long id, Integer dex, String nameDe, String nameEn, String nameFr, String nameJa, String nameKr, String nameZh, String family, List<String> types, Boolean isShiny, String variant, String image, String region, Boolean isOwned) {
         this.id = id;
         this.dex = dex;
         this.nameDe = nameDe;
@@ -34,7 +34,7 @@ public class PokeDataDto {
         this.nameZh = nameZh;
         this.family = family;
         this.types = types;
-        this.shiny = shiny;
+        this.isShiny = isShiny;
         this.variant = variant;
         this.image = image;
         this.region = region;
@@ -130,11 +130,11 @@ public class PokeDataDto {
     }
 
     public Boolean getShiny() {
-        return shiny;
+        return isShiny;
     }
 
-    public void setShiny(Boolean shiny) {
-        this.shiny = shiny;
+    public void setShiny(Boolean isShiny) {
+        this.isShiny = isShiny;
     }
 
     public String getVariant() {

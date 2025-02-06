@@ -29,7 +29,7 @@ public class PokeDataService {
                 "poke_name.name_zh, \n" +
                 "pokemon.family,\n" +
                 "types,\n" +
-                "shiny,\n" +
+                "is_shiny,\n" +
                 "variant,\n" +
                 "image,\n" +
                 "pokemon.region, is_owned FROM pokemon JOIN poke_name ON pokemon.pokename_id = poke_name.pokemon_id JOIN pokemon_types ON pokemon_types.pokemon_id = pokemon.id JOIN poke_variant ON pokemon.id = poke_variant.pokemon_id;\n";
@@ -51,7 +51,7 @@ public class PokeDataService {
             String name_zh = (String) row[7];
             String family = (String) row[8];
             String types = (String) row[9];
-            Boolean shiny = (Boolean) row[10];
+            Boolean isShiny = (Boolean) row[10];
             String variant = (String) row[11];
             String image = (String) row[12];
             String region = (String) row[13];
@@ -61,7 +61,7 @@ public class PokeDataService {
 
             // ID nicht auffindbar im aktuellen Stand des Dtos dann setzen
             if (dto == null) {
-                dto = new PokeDataDto(id, dex, name_de, name_en, name_fr, name_ja, name_kr, name_zh, family, new ArrayList<>(), shiny, variant, image, region, isOwned);
+                dto = new PokeDataDto(id, dex, name_de, name_en, name_fr, name_ja, name_kr, name_zh, family, new ArrayList<>(), isShiny, variant, image, region, isOwned);
                 groupedByVariantId.put(id, dto);
             }
             dto.getTypes().add(types);

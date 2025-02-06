@@ -17,14 +17,11 @@ public class PokeVariant {
     @JoinColumn(name = "POKEMON_ID")
     private Pokemon pokemon;
 
-    @Column(name = "DEX", nullable = false)
-    private Integer dex;
-
     @Column(name = "VARIANT", length = 100)
     private String variant;
 
-    @Column(name = "SHINY")
-    private Boolean shiny;
+    @Column(name = "IS_SHINY")
+    private Boolean isShiny;
 
     @Column(name = "IS_OWNED", nullable = false)
     private Boolean isOwned;
@@ -48,14 +45,6 @@ public class PokeVariant {
         this.pokemon = pokemon;
     }
 
-    public Integer getDex() {
-        return dex;
-    }
-
-    public void setDex(Integer dex) {
-        this.dex = dex;
-    }
-
     public String getVariant() {
         return variant;
     }
@@ -65,11 +54,11 @@ public class PokeVariant {
     }
 
     public Boolean getShiny() {
-        return shiny;
+        return isShiny;
     }
 
     public void setShiny(Boolean shiny) {
-        this.shiny = shiny;
+        isShiny = shiny;
     }
 
     public Boolean getOwned() {
