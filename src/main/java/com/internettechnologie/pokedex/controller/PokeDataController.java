@@ -21,6 +21,7 @@ public class PokeDataController implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins(
                         "https://curious-pika-1274df.netlify.app/",
+                        "https://astonishing-manatee-fd2785.netlify.app/",
                         "https://verdant-blini-982706.netlify.app/",
                         "http://localhost:3000"
                 )

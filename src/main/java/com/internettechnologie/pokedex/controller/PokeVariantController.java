@@ -23,6 +23,7 @@ public class PokeVariantController implements WebMvcConfigurer {
                 .allowedOrigins(
                         "https://curious-pika-1274df.netlify.app/",
                         "https://verdant-blini-982706.netlify.app/",
+                        "https://astonishing-manatee-fd2785.netlify.app/",
                         "http://localhost:3000"
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
