@@ -13,12 +13,6 @@ Wichtig: branch "master" ist für die lokale Ausführung gedacht, während "fron
 ## Überblick
 
 Es werden Pokémons dargestellt und ihre Eigenschaften. Es besteht die Möglichkeit nach einem bestimmten Pokémon zu suchen sowie die Möglichkeit den Besitz des Pokémons abzuspeichern. Außerdem können die Namen der Pokémons in verschiedene Sprachen ausgegeben werden.
-https://astonishing-manatee-fd2785.netlify.app/
-
-Hinweis:
-- Die Cloud DB über AWS verwaltet.
-- Spring Boot Applikation über Railway.
-- Frontend ist auf Netflify öffentlich zugänglich.
 
 ## Technologien
 
@@ -31,8 +25,12 @@ Liste der verwendeten Technologien und Frameworks:
 ## Verwendung
 
 Anwendung starten und verwenden:
-//TODO
-- Heroku
+https://astonishing-manatee-fd2785.netlify.app/
+
+Hinweis:
+- Die Cloud DB über AWS verwaltet.
+- Spring Boot Applikation über Railway.
+- Frontend ist auf Netflify öffentlich zugänglich.
 
 ### Lokale Entwicklung
 
