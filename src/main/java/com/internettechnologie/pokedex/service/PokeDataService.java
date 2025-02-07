@@ -32,7 +32,7 @@ public class PokeDataService {
                 "is_shiny,\n" +
                 "variant,\n" +
                 "image,\n" +
-                "pokemon.region, is_owned FROM pokemon JOIN poke_name ON pokemon.pokename_id = poke_name.pokemon_id JOIN pokemon_types ON pokemon_types.pokemon_id = pokemon.id JOIN poke_variant ON pokemon.id = poke_variant.pokemon_id;\n";
+                "pokemon.region, is_owned FROM pokedex.pokemon as pokemon JOIN pokedex.poke_name as poke_name ON pokemon.pokename_id = poke_name.pokemon_id JOIN pokedex.pokemon_types as pokemon_types ON pokemon_types.pokemon_id = pokemon.id JOIN pokedex.poke_variant as poke_variant ON pokemon.id = poke_variant.pokemon_id;\n";
 
         // SQL Anfrage setzen und Ergebnisse in einer HashMap nach VariantID
         Query query = entityManager.createNativeQuery(sql);
