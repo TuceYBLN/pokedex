@@ -26,7 +26,7 @@ Anwendung starten und verwenden:
 https://astonishing-manatee-fd2785.netlify.app/
 
 Hinweis:
-- Die Cloud DB über AWS verwaltet.
+- Die Cloud DB ist über AWS verwaltet.
 - Spring Boot Applikation über Railway.
 - Frontend ist auf Netflify öffentlich zugänglich.
 
