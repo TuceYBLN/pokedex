@@ -23,8 +23,12 @@ Liste der verwendeten Technologien und Frameworks:
 ## Verwendung
 
 Anwendung starten und verwenden:
-//TODO
-- Heroku
+https://astonishing-manatee-fd2785.netlify.app/
+
+Hinweis:
+- Die Cloud DB über AWS verwaltet.
+- Spring Boot Applikation über Railway.
+- Frontend ist auf Netflify öffentlich zugänglich.
 
 ### Lokale Entwicklung
 
