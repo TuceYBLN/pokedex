@@ -44,7 +44,7 @@ Um die Anwendung lokal auszuführen:
 3. Frontend lokal deployen:
    - Wechsel in den Ordner "frontend" und führe mit "npm start" aus (ggf. davor noch npm build)
 
-## API-Dokumentation (falls zutreffend)
+## API-Dokumentation
 
 - GET "/pokedata" - gibt gebündelt alle erforderlichen Informationen zu allen Pokémons wider
 - POST "/owner" - setzt "is_owned" auf true oder false
