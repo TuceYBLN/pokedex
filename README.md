@@ -24,6 +24,10 @@ Liste der verwendeten Technologien und Frameworks:
 
 ## Verwendung
 
+>[!CAUTION]
+>
+>Mittlerweile ist die kostenlose Nutzung von AWS und Railway ausgereizt. Zugriff auf die Anwendung erfolgt dementsprechend nur lokal.
+
 Anwendung starten und verwenden:
 https://astonishing-manatee-fd2785.netlify.app/
 
